@@ -89,6 +89,21 @@
   :root[data-theme="dark"] ol.take li:before{color:#08181b;}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) ol.take li:before{color:#08181b;} }
 
+  /* quotes */
+  .qnote{font-size:.9rem; color:var(--muted); max-width:64ch;}
+  .quotes{display:flex; flex-direction:column; gap:22px; margin:18px 0 6px;}
+  .qgroup .qlab{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-deep); font-weight:700; margin:0 0 11px;}
+  .q{border-left:2px solid var(--teal-soft); padding:1px 0 1px 15px; margin:0 0 14px;}
+  .q .t{font-family:"Iowan Old Style",Palatino,Georgia,serif; font-style:italic; font-size:1.03rem; line-height:1.42; color:var(--ink); margin:0 0 5px; max-width:64ch;}
+  .q .src{font-size:.75rem; color:var(--faint);}
+  .q .src b{color:var(--muted); font-weight:600;}
+  .dp{display:inline-block; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; padding:1px 7px; border-radius:20px; margin-left:7px; vertical-align:1px; font-weight:600;}
+  .dp.bind{background:var(--accent); color:#fff;}
+  .dp.strat{border:1px solid var(--teal-mid); color:var(--teal-mid);}
+  .dp.asp{color:var(--faint); border:1px solid var(--line);}
+  :root[data-theme="dark"] .dp.bind{color:#08181b;}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .dp.bind{color:#08181b;} }
+
   .foot{margin-top:56px; padding-top:18px; border-top:1px solid var(--line); font-size:.8rem; color:var(--faint);}
   @media (max-width:640px){ .stats{grid-template-columns:repeat(2,1fr)} .ex{grid-template-columns:1fr} h1{font-size:2rem} }
 </style>
@@ -174,6 +189,44 @@
     <div class="c"><h4>SADC &middot; Southern Africa</h4><p>A regional strategy asks to build member-state capacity on NbS "for more resilient management of transboundary river basins and aquifers."</p></div>
   </div>
   <p>The influence runs both ways. GBI needs transboundary governance to coordinate and share costs and benefits; and basin organisations are adopting GBI as a cheaper, cooperative alternative to grey infrastructure. Costing upstream retention and restoration as a cross-border service is a natural next step for joint financing and benefit-sharing between states.</p>
+
+  <h2>In their own words</h2>
+  <p class="qnote">Every statement in this map is anchored to a verbatim quote from its source document, translated where the original is not in English. A selection, grouped by theme, with each quote tagged by commitment strength.</p>
+  <div class="quotes">
+
+    <div class="qgroup">
+      <div class="qlab">Basin-wide joint restoration targets</div>
+      <div class="q"><div class="t">&ldquo;The TRB's basin-wide vision is that floodplains/wetlands in the entire TRB are reconnected and restored. The integrated function of these riverine systems ensures &hellip; flood protection&rdquo;.</div><div class="src"><b>[120]</b> Updated Integrated Tisza River Basin Management Plan (2019) <span class="dp strat">strategic</span></div></div>
+      <div class="q"><div class="t">&ldquo;As 80% of the former wetlands/floodplains in the DRBD are considered to be disconnected, ongoing restoration &hellip; measures are needed in order to further improve the reconnection of former wetlands/floodplains in the entire DRBD.&rdquo;</div><div class="src"><b>[8]</b> Danube River Basin Management Plan, Update 2021 (2021) <span class="dp strat">strategic</span></div></div>
+      <div class="q"><div class="t">&ldquo;Nature restoration (river kilometres) &gt; 5650 km.&rdquo;</div><div class="src"><b>[62]</b> International Flood Risk Management Plan, River Rhine (2021) <span class="dp bind">binding</span></div></div>
+    </div>
+
+    <div class="qgroup">
+      <div class="qlab">The governance case for nature-based solutions</div>
+      <div class="q"><div class="t">&ldquo;Nature-based solutions to water allocation infrastructure rarely have negative transboundary impacts, while they simultaneously help to meet environmental requirements.&rdquo;</div><div class="src"><b>[236]</b> Handbook on Water Allocation in a Transboundary Context, UNECE (2021) <span class="dp asp">mention</span></div></div>
+      <div class="q"><div class="t">&ldquo;Develop capacity of Member States and SWIs on nature-based solutions / ecosystem-based adaptations for more resilient management of transboundary river basins and aquifers.&rdquo;</div><div class="src"><b>[102]</b> SADC Regional Strategic Action Plan on IWRM, RSAP V (2023) <span class="dp strat">strategic</span></div></div>
+      <div class="q"><div class="t">&ldquo;The creation of the &lsquo;Lower Dniester&rsquo; National Park in March 2022 &hellip; covers more than 600 km&sup2; on both banks of the Dniester River.&rdquo;</div><div class="src"><b>[171]</b> Progress on Transboundary Water Cooperation under the Water Convention, Third report (2024) <span class="dp bind">binding</span></div></div>
+    </div>
+
+    <div class="qgroup">
+      <div class="qlab">The grey-to-green shift</div>
+      <div class="q"><div class="t">&ldquo;Integration of the WFD environmental objectives and flood risk management objectives requires moving away from the classical flood protection solutions to nature-based ones.&rdquo;</div><div class="src"><b>[8]</b> Danube River Basin Management Plan, Update 2021 (2021) <span class="dp strat">strategic</span></div></div>
+      <div class="q"><div class="t">&ldquo;The region's resilience will be realised through the conjunctive management and development of built infrastructure with that of ecological infrastructure, as well as the incorporation of nature-based solutions.&rdquo;</div><div class="src"><b>[102]</b> SADC Regional Strategic Action Plan on IWRM, RSAP V (2023) <span class="dp strat">strategic</span></div></div>
+    </div>
+
+    <div class="qgroup">
+      <div class="qlab">Multi-benefit retention</div>
+      <div class="q"><div class="t">&ldquo;The natural (small) water retention measures &hellip; are great examples for multi-beneficial measures in agricultural and rural areas contributing to flood, drought and pollution mitigation at the catchment scale.&rdquo;</div><div class="src"><b>[8]</b> Danube River Basin Management Plan, Update 2021 (2021) <span class="dp strat">strategic</span></div></div>
+      <div class="q"><div class="t">&ldquo;Opportunities for upstream and floodplain storage, including through the implementation of nature-based solutions, will be considered through proactive regional planning &hellip; along with cooperation on floodwater management.&rdquo;</div><div class="src"><b>[6]</b> IWRM-based Basin Development Strategy for the Lower Mekong Basin (2021) <span class="dp strat">strategic</span></div></div>
+    </div>
+
+    <div class="qgroup">
+      <div class="qlab">Global anchoring</div>
+      <div class="q"><div class="t">&ldquo;Implementing integrated urban and territorial planning, with nature-based solutions such as green-blue infrastructures.&rdquo;</div><div class="src"><b>[175]</b> Summary of Proceedings, UN 2023 Water Conference (2023) <span class="dp strat">strategic</span></div></div>
+      <div class="q"><div class="t">&ldquo;Invest in rehabilitation of wetlands and ecohydrology approaches to restore ecosystems services that provide retention and treatment of polluted water &hellip; for productive use in drinking-water supply and agriculture.&rdquo;</div><div class="src"><b>[125]</b> SDG 6 Global Acceleration Framework (2020) <span class="dp strat">strategic</span></div></div>
+    </div>
+
+  </div>
 
   <h2>Takeaways for the talk</h2>
   <ol class="take">
