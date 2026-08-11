@@ -1,0 +1,274 @@
+<title>Green-Blue Infrastructure in Transboundary Water Governance</title>
+<style>
+  :root{
+    --paper:#eef3f2; --card:#ffffff; --ink:#132a2d; --muted:#4d6467; --faint:#7a9092;
+    --line:#d5e2df; --line-soft:#e4edeb;
+    --blue:#0a8391; --green:#6f8f38;            /* categorical: named vs measure */
+    --teal:#0a8391; --teal-strong:#0b5b66; --teal-mid:#189aa8; --teal-soft:#8fc7cf;  /* sequential */
+    --accent:#0a8391; --accent-deep:#0b5b66;
+    --shadow:0 1px 2px rgba(19,42,45,.06), 0 8px 30px rgba(19,42,45,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0d1f22; --card:#132a2d; --ink:#e7efed; --muted:#a3b8b7; --faint:#728988;
+      --line:#254340; --line-soft:#1c3633;
+      --blue:#37b6c4; --green:#a6c56a;
+      --teal:#37b6c4; --teal-strong:#7fd0da; --teal-mid:#37b6c4; --teal-soft:#2b7d86;
+      --accent:#3cbcca; --accent-deep:#7fd0da;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0d1f22; --card:#132a2d; --ink:#e7efed; --muted:#a3b8b7; --faint:#728988;
+    --line:#254340; --line-soft:#1c3633;
+    --blue:#37b6c4; --green:#a6c56a;
+    --teal:#37b6c4; --teal-strong:#7fd0da; --teal-mid:#37b6c4; --teal-soft:#2b7d86;
+    --accent:#3cbcca; --accent-deep:#7fd0da;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.6; margin:0; -webkit-font-smoothing:antialiased;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:780px; margin:0 auto; padding:56px 24px 80px;}
+  .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;}
+
+  /* masthead */
+  .eyebrow{font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-deep); font-weight:600;}
+  h1{font-size:2.5rem; line-height:1.08; margin:.5rem 0 .6rem; letter-spacing:-.015em; text-wrap:balance; font-weight:600;}
+  .lede{font-size:1.18rem; color:var(--muted); max-width:60ch; margin:0 0 1.2rem; text-wrap:balance;}
+  .prov{font-size:.82rem; color:var(--faint); border-top:1px solid var(--line); padding-top:.9rem;}
+  .prov b{color:var(--muted); font-weight:600;}
+
+  /* stat row */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:30px 0 8px;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 16px 14px; box-shadow:var(--shadow);}
+  .stat .n{font-size:2rem; font-weight:600; letter-spacing:-.02em; line-height:1;}
+  .stat .n.blue{color:var(--blue)} .stat .n.green{color:var(--green)} .stat .n.teal{color:var(--accent-deep)}
+  .stat .k{font-size:.78rem; color:var(--muted); margin-top:7px; line-height:1.3;}
+
+  h2{font-size:1.02rem; letter-spacing:.02em; margin:52px 0 6px; font-weight:700;}
+  h2 .num{color:var(--accent-deep); font-weight:700; margin-right:.5em; font-variant-numeric:tabular-nums;}
+  p{max-width:65ch;}
+  .read{font-size:.9rem; color:var(--muted); max-width:64ch; margin:.4rem 0 0;}
+  a{color:var(--accent-deep);}
+
+  /* figure */
+  figure{margin:22px 0 6px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 20px 16px; box-shadow:var(--shadow);}
+  figcaption{font-size:.95rem; font-weight:600; margin-bottom:2px;}
+  .sub{font-size:.8rem; color:var(--faint); margin-bottom:12px;}
+  .legend{display:flex; gap:16px; font-size:.78rem; color:var(--muted); margin:2px 0 12px; flex-wrap:wrap;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .sw{width:11px; height:11px; border-radius:3px; display:inline-block;}
+  .chart{width:100%; overflow-x:auto;}
+  svg{display:block; width:100%; height:auto;}
+  .lab{fill:var(--muted); font-size:12.5px;}
+  .val{fill:var(--ink); font-size:12px; font-weight:600;}
+  .valm{fill:var(--faint); font-size:11px;}
+  .axis{stroke:var(--line-soft); stroke-width:1;}
+  .b-blue{fill:var(--blue)} .b-green{fill:var(--green)} .b-mag{fill:var(--teal)}
+  .d1{fill:var(--teal-strong)} .d2{fill:var(--teal-mid)} .d3{fill:var(--teal-soft)}
+
+  /* pull quote */
+  blockquote{margin:26px 0; padding:2px 0 2px 22px; border-left:3px solid var(--accent); font-family:"Iowan Old Style",Palatino,Georgia,serif; font-size:1.28rem; line-height:1.4; color:var(--ink); font-style:italic;}
+  blockquote cite{display:block; font-size:.82rem; font-style:normal; color:var(--faint); margin-top:.5rem; font-family:ui-sans-serif,system-ui,sans-serif;}
+
+  /* example cards */
+  .ex{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0;}
+  .ex .c{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:15px 16px;}
+  .ex .c h4{margin:0 0 5px; font-size:.92rem; color:var(--accent-deep);}
+  .ex .c p{margin:0; font-size:.86rem; color:var(--muted); max-width:none;}
+
+  ol.take{counter-reset:t; list-style:none; padding:0; margin:14px 0;}
+  ol.take li{counter-increment:t; position:relative; padding:12px 0 12px 42px; border-top:1px solid var(--line-soft);}
+  ol.take li:before{content:counter(t); position:absolute; left:0; top:11px; width:28px; height:28px; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; font-size:.85rem; display:grid; place-items:center;}
+  :root[data-theme="dark"] ol.take li:before{color:#08181b;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) ol.take li:before{color:#08181b;} }
+
+  .foot{margin-top:56px; padding-top:18px; border-top:1px solid var(--line); font-size:.8rem; color:var(--faint);}
+  @media (max-width:640px){ .stats{grid-template-columns:repeat(2,1fr)} .ex{grid-template-columns:1fr} h1{font-size:2rem} }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Research findings &middot; Transboundary water and the circular economy</div>
+    <h1 class="serif">Green-Blue Infrastructure in Transboundary Water Governance</h1>
+    <p class="lede">What the world's official transboundary water policy documents say about green-blue infrastructure and nature-based solutions, and why it is fundamentally a cross-border story.</p>
+    <p class="prov"><b>Evidence base</b> &nbsp;A corpus of 252 official transboundary water-governance documents (1909&ndash;2025), read by human-guided AI agents. &nbsp;<b>112</b> documents screened positive; <b>397</b> statements extracted and strength-rated across <b>86</b> documents.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="n teal">397</div><div class="k">GBI / NbS statements extracted</div></div>
+    <div class="stat"><div class="n teal">86</div><div class="k">documents carrying them</div></div>
+    <div class="stat"><div class="n blue">31%</div><div class="k">binding or operational, not just intent</div></div>
+    <div class="stat"><div class="n green">44%</div><div class="k">of the whole corpus touches GBI / NbS</div></div>
+  </div>
+
+  <h2>The finding</h2>
+  <p>Green-blue infrastructure (GBI) and nature-based solutions (NbS) are already an operational vocabulary in transboundary water governance, not a rhetorical garnish. Where they appear, they are mostly about flood risk and water retention, framed as a deliberate move from grey (engineered) to green (natural) measures, and the densest, most concrete language comes from joint basin commissions rather than single governments. The reason is structural. Upstream retention and restoration reduce downstream flood and pollution risk, and upstream and downstream sit in different countries, so GBI is a coordination problem by construction. One line from the corpus makes the governance case directly.</p>
+
+  <blockquote class="serif">Nature-based solutions to water allocation infrastructure rarely have negative transboundary impacts, while they simultaneously help to meet environmental requirements.
+  <cite>Handbook on Water Allocation in a Transboundary Context, UNECE (2021)</cite></blockquote>
+
+  <p>That reframes NbS as a positive-sum measure that sidesteps the zero-sum logic of water allocation, which makes it a durable, low-conflict agenda for riparian states to cooperate on.</p>
+
+  <h2><span class="num">01</span>How strong are the commitments?</h2>
+  <figure>
+    <figcaption>Statements by strength tier</figcaption>
+    <div class="sub">All 397 statements, rated by how firm the commitment is.</div>
+    <div class="chart" id="c-depth"></div>
+    <p class="read">A third of the record is already commissioned or committed, not aspirational. The Rhine plan alone commits over 5,650 river-km of nature restoration and over 1,230 km&sup2; of floodplain reactivation by 2027.</p>
+  </figure>
+
+  <h2><span class="num">02</span>Where is it happening?</h2>
+  <figure>
+    <figcaption>Statements by world region</figcaption>
+    <div class="sub">Split by whether the document names the concept (blue) or only enacts the measures (green).</div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--blue)"></i>Named GBI / NbS</span>
+      <span><i class="sw" style="background:var(--green)"></i>Measures only</span>
+    </div>
+    <div class="chart" id="c-region"></div>
+    <p class="read">Europe leads under the EU Water Framework and Floods Directives. But Sub-Saharan Africa is far larger than the named layer suggests: 21 explicit mentions become 93 once riparian, reforestation and ecosystem-service measures are counted. The concept travels well beyond the EU machinery.</p>
+  </figure>
+
+  <h2><span class="num">03</span>The measures predate the label</h2>
+  <figure>
+    <figcaption>Statements by decade</figcaption>
+    <div class="sub">Named GBI / NbS language versus the underlying measures, over time.</div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--blue)"></i>Named GBI / NbS</span>
+      <span><i class="sw" style="background:var(--green)"></i>Measures only</span>
+    </div>
+    <div class="chart" id="c-decade"></div>
+    <p class="read">The explicit vocabulary surges in the 2020s, but the underlying works, floodplain reconnection, wetlands, riparian buffers, run strong through the 2010s. Basins were building green-blue infrastructure well before they called it that.</p>
+  </figure>
+
+  <h2><span class="num">04</span>What the measures are</h2>
+  <figure>
+    <figcaption>Most frequent measure types</figcaption>
+    <div class="sub">Across all 397 statements.</div>
+    <div class="chart" id="c-measures"></div>
+    <p class="read">Restoration dominates: wetlands, floodplains and riparian buffers, plus natural retention that stores water in the catchment rather than behind concrete. "Grey-to-green" is named explicitly in 15 statements.</p>
+  </figure>
+
+  <h2><span class="num">05</span>What it is for</h2>
+  <figure>
+    <figcaption>Stated purpose of the intervention</figcaption>
+    <div class="sub">Across all 397 statements.</div>
+    <div class="chart" id="c-purpose"></div>
+    <p class="read">Biodiversity edges ahead of flood as the leading justification, because a single wetland or riparian measure is usually defended on ecological and flood grounds at once. Multi-benefit framing is the norm, not the exception.</p>
+  </figure>
+
+  <h2>The transboundary link</h2>
+  <p>The documents that treat GBI best are written by joint basin bodies, and they set shared, quantified restoration targets across sovereign borders.</p>
+  <div class="ex">
+    <div class="c"><h4>Danube &middot; 11 countries</h4><p>The ICPDR holds a basin-wide vision that "floodplains/wetlands all over the DRBD are re-connected and restored," noting 80% are currently disconnected.</p></div>
+    <div class="c"><h4>Rhine &middot; international district</h4><p>Quantified joint targets: over 5,650 river-km of nature restoration and over 1,230 km&sup2; of floodplain reactivation by 2027, allocated across riparian nations.</p></div>
+    <div class="c"><h4>Dniester &middot; Moldova &amp; Ukraine</h4><p>Jointly created the Lower Dniester National Park, more than 600 km&sup2; on both banks, using ecosystem-based flood control.</p></div>
+    <div class="c"><h4>SADC &middot; Southern Africa</h4><p>A regional strategy asks to build member-state capacity on NbS "for more resilient management of transboundary river basins and aquifers."</p></div>
+  </div>
+  <p>The influence runs both ways. GBI needs transboundary governance to coordinate and share costs and benefits; and basin organisations are adopting GBI as a cheaper, cooperative alternative to grey infrastructure. Costing upstream retention and restoration as a cross-border service is a natural next step for joint financing and benefit-sharing between states.</p>
+
+  <h2>Takeaways for the talk</h2>
+  <ol class="take">
+    <li>GBI / NbS is now <b>operational language</b> in transboundary water governance, not decoration. 397 statements, 86 official documents, a third already at binding or operational depth.</li>
+    <li>It is fundamentally a <b>coordination story</b>. Upstream retention is downstream flood and pollution defence, and the strongest evidence is joint basin commissions setting shared, quantified targets across borders.</li>
+    <li>The dominant move is <b>grey-to-green plus flood-driven retention</b>: stepping back from concrete-first defence toward floodplains, wetlands and forests that deliver several benefits at once.</li>
+    <li>NbS is the <b>low-conflict entry point</b> for cooperation. It rarely creates negative transboundary impacts, which makes it a natural first axis for a Transboundary Water Circularity Index.</li>
+  </ol>
+
+  <div class="foot">
+    Produced by a human-guided agentic-AI pass over the transboundary water governance corpus (STREAM project). Concepts defined a priori (GBI, NbS, ecosystem-based approaches and their measures); every corpus document read in full, non-English statements translated, each statement strength-rated. Underlying data: GBI_NbS_statements_all.json (397 records). Draft research brief for internal review, August 2026.
+  </div>
+</div>
+
+<script>
+const DATA = {
+  depth: [ {label:"Binding / operational", value:125, cls:"d1"}, {label:"Strategic / planned", value:224, cls:"d2"}, {label:"Aspirational / mention", value:48, cls:"d3"} ],
+  region: [
+    ["Europe",124,76],["Sub-Saharan Africa",21,72],["Global frameworks",24,17],
+    ["East / SE Asia",14,8],["Americas",0,13],["South Asia",0,12],["Central Asia",0,11],["MENA",4,1]
+  ],
+  decade: [ ["1990s",0,6],["2000s",0,17],["2010s",39,116],["2020s",148,68] ],
+  measures: [ ["Wetland restoration",68],["Ecosystem services",54],["Floodplain reconnection",47],["Riparian buffers",47],["Natural water retention",44],["Reforestation",40],["Grey-to-green",15],["Sustainable drainage",8] ],
+  purpose: [ ["Biodiversity",113],["Flood",105],["Water quality",68],["Water management (general)",63],["Climate adaptation",34],["Drought",8],["Supply",6] ]
+};
+
+function svg(w,h){ const s=document.createElementNS("http://www.w3.org/2000/svg","svg"); s.setAttribute("viewBox",`0 0 ${w} ${h}`); s.setAttribute("role","img"); return s; }
+function el(tag,attrs,text){ const e=document.createElementNS("http://www.w3.org/2000/svg",tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(text!=null) e.textContent=text; return e; }
+
+// single-series magnitude bars
+function magBars(id, rows, unit){
+  const W=600, labW=176, valW=44, barX=labW, barW=W-labW-valW, rowH=30, pad=8;
+  const H=rows.length*rowH+pad*2; const max=Math.max(...rows.map(r=>r[1]));
+  const s=svg(W,H); s.setAttribute("aria-label",unit);
+  rows.forEach((r,i)=>{
+    const y=pad+i*rowH; const w=Math.max(2,barW*r[1]/max);
+    s.appendChild(el("text",{x:labW-10,y:y+rowH/2,"text-anchor":"end","dominant-baseline":"middle",class:"lab"},r[0]));
+    const rect=el("rect",{x:barX,y:y+6,width:w,height:rowH-14,rx:4,class:"b-mag"});
+    rect.appendChild(el("title",{},`${r[0]}: ${r[1]}`)); s.appendChild(rect);
+    s.appendChild(el("text",{x:barX+w+8,y:y+rowH/2,"dominant-baseline":"middle",class:"val"},r[1]));
+  });
+  document.getElementById(id).appendChild(s);
+}
+
+// stacked two-series horizontal
+function stacked(id, rows){ // rows: [label, blue, green]
+  const W=600, labW=176, valW=46, barX=labW, barW=W-labW-valW, rowH=30, pad=8;
+  const H=rows.length*rowH+pad*2; const max=Math.max(...rows.map(r=>r[1]+r[2]));
+  const s=svg(W,H);
+  rows.forEach((r,i)=>{
+    const y=pad+i*rowH; const tot=r[1]+r[2];
+    const wb=barW*r[1]/max, wg=barW*r[2]/max;
+    s.appendChild(el("text",{x:labW-10,y:y+rowH/2,"text-anchor":"end","dominant-baseline":"middle",class:"lab"},r[0]));
+    if(r[1]>0){ const rb=el("rect",{x:barX,y:y+6,width:Math.max(2,wb),height:rowH-14,rx:3,class:"b-blue"}); rb.appendChild(el("title",{},`${r[0]} — named: ${r[1]}`)); s.appendChild(rb); }
+    if(r[2]>0){ const gx=barX+(r[1]>0?wb+2:0); const rg=el("rect",{x:gx,y:y+6,width:Math.max(2,wg),height:rowH-14,rx:3,class:"b-green"}); rg.appendChild(el("title",{},`${r[0]} — measures: ${r[2]}`)); s.appendChild(rg); }
+    s.appendChild(el("text",{x:barX+barW*tot/max+8,y:y+rowH/2,"dominant-baseline":"middle",class:"val"},tot));
+  });
+  document.getElementById(id).appendChild(s);
+}
+
+// grouped two-series (decade)
+function grouped(id, rows){ // [label, blue, green]
+  const W=600, labW=70, valGap=6, rowH=52, pad=10, barX=labW, barW=W-labW-40;
+  const H=rows.length*rowH+pad*2; const max=Math.max(...rows.map(r=>Math.max(r[1],r[2])));
+  const s=svg(W,H); const bh=14;
+  rows.forEach((r,i)=>{
+    const y=pad+i*rowH;
+    s.appendChild(el("text",{x:labW-12,y:y+rowH/2,"text-anchor":"end","dominant-baseline":"middle",class:"lab"},r[0]));
+    [[r[1],"b-blue","named",0],[r[2],"b-green","measures",1]].forEach(([v,cls,nm,k])=>{
+      const yy=y+8+k*(bh+6); const w=Math.max(1,barW*v/max);
+      const rc=el("rect",{x:barX,y:yy,width:w,height:bh,rx:3,class:cls}); rc.appendChild(el("title",{},`${r[0]} — ${nm}: ${v}`)); s.appendChild(rc);
+      s.appendChild(el("text",{x:barX+w+7,y:yy+bh/2,"dominant-baseline":"middle",class:"valm"},v));
+    });
+  });
+  document.getElementById(id).appendChild(s);
+}
+
+// depth as stacked single-hue tiers (reuse magBars styling but colored tiers)
+function depthChart(id, rows){
+  const W=600, labW=176, valW=44, barX=labW, barW=W-labW-valW, rowH=34, pad=8;
+  const H=rows.length*rowH+pad*2; const max=Math.max(...rows.map(r=>r.value));
+  const s=svg(W,H);
+  rows.forEach((r,i)=>{
+    const y=pad+i*rowH; const w=Math.max(2,barW*r.value/max);
+    s.appendChild(el("text",{x:labW-10,y:y+rowH/2,"text-anchor":"end","dominant-baseline":"middle",class:"lab"},r.label));
+    const rect=el("rect",{x:barX,y:y+7,width:w,height:rowH-16,rx:4,class:r.cls}); rect.appendChild(el("title",{},`${r.label}: ${r.value}`)); s.appendChild(rect);
+    const pct=Math.round(r.value/397*100);
+    s.appendChild(el("text",{x:barX+w+8,y:y+rowH/2,"dominant-baseline":"middle",class:"val"},`${r.value}  (${pct}%)`));
+  });
+  document.getElementById(id).appendChild(s);
+}
+
+depthChart("c-depth", DATA.depth);
+stacked("c-region", DATA.region);
+grouped("c-decade", DATA.decade);
+magBars("c-measures", DATA.measures, "measure types");
+magBars("c-purpose", DATA.purpose, "purpose");
+</script>
